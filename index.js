@@ -42,10 +42,5 @@ if(!dev){
 
 
 
-https.createServer({
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert')
-}, app).listen(PORT, () => {
-    console.log('Example app listening on port 5000! Go to https://localhost:5000/')
-})
+app.listen(PORT, () => console.log('Server up and running'))
 
