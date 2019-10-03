@@ -17,7 +17,7 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 const dev = app.get('env') !== 'production';
 
-mongoose.connect(process,env.MONGO_URI, { useNewUrlParser: true })
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
     .then(() => console.log('Database connected'))
 
 
