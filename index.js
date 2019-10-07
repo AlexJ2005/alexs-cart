@@ -18,10 +18,7 @@ const PORT = process.env.PORT || 5000;
 const dev = app.get('env') !== 'production';
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
-    .then(() => console.log('Database connected'))
-
-
-
+    .then(() => console.log('Database connected')).catch(err => console.log(err))
 
 app.use(bodyParser.json())
 app.use(cors());
@@ -30,17 +27,18 @@ app.use('/api', itemsRoute);
 app.use('/addItem', addItem)
 
 if(!dev){
-    app.disable('x-powered-by');
-    app.use(compression());
-    
-    app.use(express.static(path.resolve(__dirname, 'build')))
+    app.use(express.static(path.resolve(__dirname, 'client/build')))
 
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+        res.sendFile(path.resolve(__dirname, 'client/build',  'index.html'))
     })
 }
 
-
-
-app.listen(PORT, () => console.log('Server up and running'))
+https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+  }, app)
+  .listen(PORT, () => {
+    console.log('App up and running')
+  })
 

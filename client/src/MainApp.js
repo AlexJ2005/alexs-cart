@@ -61,7 +61,7 @@ export class MainApp extends Component {
         products[index].amount++;
         //  this.setState(({ products }))
 
-        axios.patch(`https://localhost:5000/api/${product._id}`, { amount: products[index].amount }).then(response => this.setState({ products: response.data.products }))
+        axios.patch(`https://localhost:5000/api/${product._id}`, { amount: products[index].amount }).then((response) => this.setState({ products: response.data.products }))
 
     }
 
