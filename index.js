@@ -27,7 +27,7 @@ app.use('/api', itemsRoute);
 app.use('/addItem', addItem)
 
 if(!dev){
-    app.use(express.static(path.resolve(__dirname, 'client', 'build')))
+    app.use(express.static('client/build'))
 
     app.get('*', (req, res) => {
         const index = path.join(__dirname, 'client', 'build', 'index.html')
