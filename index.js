@@ -27,7 +27,7 @@ app.use('/api', itemsRoute);
 app.use('/addItem', addItem)
 
 if(!dev){
-    app.use(express.static(path.resolve(__dirname, 'client/build')))
+    app.use(express.static(path.resolve(__dirname, 'client', 'build')))
 
     app.get('*', (req, res) => {
         const index = path.join(__dirname, 'client', 'build', 'index.html')
@@ -39,8 +39,8 @@ https.createServer({
     key: fs.readFileSync('server.key'),
     cert: fs.readFileSync('server.cert')
   }, app)
-  .listen(PORT, () => {
+.listen(PORT, () => {
     console.log('App up and running')
-  })
+})
 
-console.log(path.resolve(__dirname, 'client', 'build' ,'index.html'))
+
