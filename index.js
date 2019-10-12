@@ -36,7 +36,7 @@ https.createServer({
     cert: fs.readFileSync('server.cert')
   }, app)
 .listen(PORT, () => {
-    console.log('App up and running')
+    console.log('Server started')
 })
 
 
